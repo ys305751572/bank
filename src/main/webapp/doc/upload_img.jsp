@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	//    String basePath = request.getScheme()+"://"+"weixin.binf.me"+path+"/";
+%>
 <!doctype html>
 <html ang="zh-cn">
 <head>
@@ -7,9 +13,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
 <title>无标题文档</title>
-<link rel="stylesheet" type="text/css" href="../static/html/css/libs/CSSRESET.css">
-<link rel="stylesheet" type="text/css" href="../static/html/css/common.css">
-<link rel="stylesheet" type="text/css" href="../static/html/css/upload_img.css">
+<link rel="stylesheet" type="text/css"
+	href="../static/html/css/libs/CSSRESET.css">
+<link rel="stylesheet" type="text/css"
+	href="../static/html/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="../static/html/css/upload_img.css">
 <script src="../static/html/js/libs/jquery-2.1.3.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="../static/html/js/uploadPreview.js" type="text/javascript"></script>
@@ -36,23 +45,28 @@
 			<div class="_container clear">
 				<article class="wrapper">
 					<div class="main">
-						<form method="post" action="api/visit/record" enctype="multipart/form-data">
+						<form method="post" action="<%= basePath %>api/visit/record"
+							enctype="multipart/form-data">
 							<h4 class="upload">
-								<img id="ImgPr" src="../static/html/img/icon_upload.png" width="120" height="150" alt="" />
+								<img id="ImgPr" src="../static/html/img/icon_upload.png"
+									width="120" height="150" alt="" />
 								<p>点击上传安心合集</p>
 							</h4>
 							<h5>请输入工号！</h5>
 							<div>
-								<label></label><input type="text" name="" placeholder="请输入见证人工号" />
+								<label></label><input type="text" name="wnumber" id="wnumber"
+									placeholder="请输入见证人工号" />
 							</div>
 							<div>
-								<label></label><input type="text" name="" placeholder="请输入本人姓名" />
+								<label></label><input type="text" name="custName" id="custName"
+									placeholder="请输入本人姓名" />
 							</div>
 							<div>
-								<label></label><input type="text" name="" placeholder="请输入本人电话" />
+								<label></label><input type="text" name="custMobile"
+									id="custMobile" placeholder="请输入本人电话" />
 							</div>
-							<input type="file" id="file1" name="" /> 
-							<input type="submit" value="点击提交" class="btn_submit" />
+							<input type="file" id="file1" name="file1" /> <input
+								type="submit" value="点击提交" class="btn_submit" />
 						</form>
 					</div>
 				</article>

@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="tb_visitRecord")
+@Table(name="tb_em_visit_record")
 public class VisitRecord {
 	
 	@Id
@@ -39,8 +39,8 @@ public class VisitRecord {
 	private Date createDate;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_date")
-	private Date updateDate;
+	@Column(name = "modify_date")
+	private Date modifyDate;
 	
 	public String getCustId() {
 		return custId;
@@ -82,12 +82,12 @@ public class VisitRecord {
 		this.createDate = createDate;
 	}
 
-	public Date getUpdateDate() {
-		return updateDate;
+	public Date getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+	public void setModifyDate(Date modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	public Integer getId() {

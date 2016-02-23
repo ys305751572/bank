@@ -1,8 +1,11 @@
 package com.sixmac.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,10 +43,10 @@ public class VisitController2 {
 	 * @param mobile
 	 * @return
 	 */
-	@RequestMapping(value = "/record")
-	public String visitRecord(@RequestParam MultipartFile file,String wnumber, String custName, String custMobile) {
+	@RequestMapping(value = "/record", method = RequestMethod.POST)
+	public String visitRecord(@RequestParam(value = "file1", required = false) MultipartFile file1,String wnumber, String custName, String custMobile) {
 
-		Image image = uploadImageService.uploadImage(file);
+		Image image = uploadImageService.uploadImage(file1);
 		
 		VisitRecord record = new VisitRecord();
 		EmCust cust2 = emCustService.findByCustNameAndWname(custName, wnumber);
@@ -54,7 +57,9 @@ public class VisitController2 {
 		record.setCustName(custName);
 		record.setWnumber(wnumber);
 		record.setImage(image != null ? image.getPath() : "");
+		record.setCreateDate(new Date());
+		record.setModifyDate(new Date());
 		service.create(record);
-		return "";
+		return "redirect:/doc/upload_img.jsp";
 	}
 }

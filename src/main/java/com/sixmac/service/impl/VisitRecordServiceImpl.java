@@ -48,10 +48,8 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 
 	@Override
 	public VisitRecord create(VisitRecord t) {
-		t.setCreateDate(new Date());
-		t.setUpdateDate(new Date());
 		dao.save(t);
-		return null;
+		return t;
 	}
 
 	@Override

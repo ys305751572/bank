@@ -181,7 +181,7 @@ public class EmCustServiceImpl implements EmCustService{
 	public EmCust findByCustNameAndWname(String custName, String wname) {
 		EntityManager em = factory.createEntityManager();
 		
-		String sql = "select a where EmCust a where a.customerName = "+ custName +" and wnumber = "+ wname +" limit 1";
+		String sql = "select a.* from tb_em_cust a where a.customer_name = '"+ custName +"' and wnumber = '"+ wname +"' limit 1";
 		Query query = em.createNativeQuery(sql, EmCust.class);
 		EmCust cust = (EmCust) query.getSingleResult();
 		return cust;
