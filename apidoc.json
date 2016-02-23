@@ -1,0 +1,17 @@
+{
+  "name": "测试接口文档",
+  "version": "0.0.1",
+  "description": "",
+  "title": "Custom apiDoc browser title",
+  "url": "http://localhost:8081/dayshow",
+  "sampleUrl": "http://localhost:8081/dayshow",
+  "header": {
+    "title": "start",
+    "filename": "header.md"
+  },
+  "template": {
+    "forceLanguage": "zh",
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

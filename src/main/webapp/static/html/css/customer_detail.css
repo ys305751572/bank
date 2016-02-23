@@ -1,0 +1,13 @@
+/* CSS Document */
+.main{ padding:0 3%;}
+.sort { padding:1.6rem 0; position:relative;}
+.sort a{ width:40%; text-align:center; padding:0.6rem 0; display:inline-block; font-size:1.6rem; color:#fff; border-radius:2rem; background:#489FF0 url(../img/icon_down.png) no-repeat 90% center;}
+.sort a:first-of-type{ float:left; margin-left:5%;}
+.sort a:last-of-type{ float:right; margin-right:5%;}
+.sort a:hover{ background:#2891EE url(../img/icon_down.png) no-repeat 90% center;}
+.ul_detail{ padding-left:3%;}
+.ul_detail li{ padding:1rem 0; margin-bottom:1.2rem; background:#E9F9FF; box-shadow:0 0 3px #999; box-shadow:0 0 7px #999; position:relative;}
+.ul_detail h5,.ul_detail p{ line-height:2.4rem; font-size:1.5rem; font-weight:normal; color:#1488B3; text-indent:8%;}
+.ul_detail p strong{ font-size:1.8rem; }
+.ul_detail i{ width:3rem; height:3rem; line-height:3rem; font-size:1.4rem; font-style:normal; color:#1488B3; text-align:center; position:absolute; background:url(../img/icon_squre.png) no-repeat center center/2.8rem auto; left:-1.5rem; top:50%; transform:translateY(-50%); -webkit-transform:translateY(-50%);}
+.ul_detail span{ height:2rem; line-height:2rem; font-size:1.3rem; color:#1488B3; padding-right:2.2rem; background:url(../img/icon_check.png) no-repeat right center/auto 1.8rem; position:absolute; right:5%; top:50%; transform:translateY(-50%); -webkit-transform:translateY(-50%); }

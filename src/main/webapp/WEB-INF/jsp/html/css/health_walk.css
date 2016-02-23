@@ -1,0 +1,8 @@
+/* CSS Document */
+.main{ padding:0 8%;}
+.main .div_location{ height:3.0rem; margin:2rem 0 0.2rem 0; background:url(../img/icon_location.png) no-repeat 1px center/auto 3.0rem;}
+.ul_list li{ display:-webkit-box; padding-top:2.4rem; background:url(../img/icon_dot.png) repeat-y 1.1rem top;}
+.ul_list span{ width:2.4rem; height:2.4rem; display:inline-block; background:url(../img/icon_circle.png) no-repeat center center/2rem auto;}
+.ul_list p{ line-height:2.4rem; font-size:1.6rem; font-weight:bold; -webkit-box-flex:1; padding-left:1rem; color:#fff; text-shadow:1px 1px 3px #666;}
+.ul_list p em{ font-style:normal; color:#FFBB02; padding:0 0.6rem;}
+

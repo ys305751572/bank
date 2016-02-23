@@ -1,0 +1,30 @@
+/* CSS Document */
+html { font-size: 62.5%;}
+@media only screen and (min-width: 320px){html {font-size: 62.5%!important;}}
+@media only screen and (min-width: 360px){html {font-size: 72.5%!important;}}
+@media only screen and (min-width: 400px){html {font-size: 82.5%!important;}}
+@media only screen and (min-width: 480px){html {font-size: 94%!important;}}
+
+body{ background:#1BC1FF;}
+._container{ margin:0 auto;}
+
+/* header 样式 */
+.header{ height:4.2rem; background:#1BC1FF; position:relative;}
+.header h1{ height:100%; line-height:4.2rem; text-align:center; color:#fff; font-size:2.0rem; text-shadow:2px 2px 3px #333; font-weight:normal; }
+.header a{ width:4.2rem; height:4.2rem; line-height:4.2rem; font-size:1.6rem; text-align:center; position:absolute; top:0; color:#fff; -webkit-tap-highlight-color:rgba(0,0,0,0.1); }
+
+
+/* wrapper */
+.wrapper{ width:100%; top:4.2rem; bottom:4.6rem; position:absolute; overflow-y: scroll; -webkit-overflow-scrolling:touch;}
+.main{ width:100%;  word-break:break-all; overflow:hidden; box-sizing:border-box; position:absolute;}
+.wrapper::-webkit-scrollbar {width:0px; background:rgba(255,255,255,0);}
+
+/* footer样式 */
+.footer{ width:100%; height:4.6rem; position:absolute; bottom:0; background:#489FF0; box-sizing:border-box; overflow:hidden; border-top:1px solid rgba(255,255,255,0.4); box-shadow:0 0 5px #666;}
+.ul_menu{ height:4.6rem; display:-webkit-box;}
+.ul_menu li{ width:33.3%; height:100%; -webkit-box-flex:1; box-sizing:border-box; border-right:1px solid rgba(255,255,255,0.4); position:relative;}
+.ul_menu li a{ height:100%; line-height:4.6rem; text-align:center; display:block; color:#fff; font-size:1.6rem; -webkit-tap-highlight-color:rgba(0,0,0,0.1);}
+.ul_menu li.active a{ color:#fff;}
+.ul_menu li i{ display:block; height:2.2rem; margin-bottom:0.2rem; text-align:center; font-size:2.2rem; color:#fff;}
+
+
