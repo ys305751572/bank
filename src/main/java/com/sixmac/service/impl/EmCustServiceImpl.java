@@ -77,7 +77,8 @@ public class EmCustServiceImpl implements EmCustService{
 
 	@Override
 	public EmCust findByUsernameAndPassword(String username, String password) {
-		return dao.findByUsernameAndPassword(username, password);
+//		return dao.findByUsernameAndPassword(username, password);
+		return null;
 	}
 
 	@Override

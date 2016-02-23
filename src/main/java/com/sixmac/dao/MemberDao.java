@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface MemberDao extends JpaRepository<Member, Integer> {
 
-    @Query("select a from EmCust a where a.wnumber = ?1 and a.mobile = ?2 limit 1")
+    @Query("select a from EmCust a where a.wnumber = ?1 and a.mobile = ?2")
     public Member findByUnameAndPword(String username, String password);
 
     @Query("select a from Member a where a.type = 'BUSINESS'")

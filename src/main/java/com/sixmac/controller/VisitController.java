@@ -43,7 +43,7 @@ public class VisitController extends CommonController {
 	 * @param name
 	 * @param mobile
 	 * @return
-	 */
+	 
 	@RequestMapping(value = "/record")
 	public String visitRecord(@RequestParam MultipartFile file,String wnumber, String custName, String custMobile) {
 
@@ -61,7 +61,7 @@ public class VisitController extends CommonController {
 		service.create(record);
 		return "";
 	}
-
+	*/
 	/**
 	 * 保单明细
 	 * 
