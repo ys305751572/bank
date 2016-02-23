@@ -36,6 +36,36 @@
 				Height : 161
 			});
 		});
+		
+		$formBtn = $("#doBtn");
+		$formBtn.on("click",function() {
+			
+			var image = $("#file1").val();
+			var wnumber = $("#wnumber").val();
+			var custName = $("#custName").val();
+			var custMobile = $("#custMobile").val();
+			
+			var $error = $("#error");
+			 $error.empty();
+			 if(image == null || image.trim() == '') {
+					$error.append("请上传图片");
+					return;
+				}
+			 
+			if(wnumber == null || wnumber.trim() == '') {
+				$error.append("请输入见证人工号");
+				return;
+			}
+			if(custName == null || custName.trim() == '') {
+				$error.append("请输入本人姓名");
+				return;
+			}
+			if(custMobile == null || custMobile.trim() == '') {
+				$error.append("请输入本人电话");
+				return;
+			}
+			$("form").submit();
+		})
 	})
 </script>
 </head>
@@ -52,7 +82,7 @@
 									width="120" height="150" alt="" />
 								<p>点击上传安心合集</p>
 							</h4>
-							<h5>请输入工号！</h5>
+							<h5 id="error"></h5>
 							<div>
 								<label></label><input type="text" name="wnumber" id="wnumber"
 									placeholder="请输入见证人工号" />
@@ -65,8 +95,8 @@
 								<label></label><input type="text" name="custMobile"
 									id="custMobile" placeholder="请输入本人电话" />
 							</div>
-							<input type="file" id="file1" name="file1" /> <input
-								type="submit" value="点击提交" class="btn_submit" />
+							<input type="file" id="file1" name="file1" /> 
+							<input id="doBtn" type="button" value="点击提交" class="btn_submit" />
 						</form>
 					</div>
 				</article>
