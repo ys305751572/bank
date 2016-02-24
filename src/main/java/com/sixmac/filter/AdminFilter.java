@@ -2,6 +2,7 @@ package com.sixmac.filter;
 
 import com.sixmac.common.logger.Logger;
 import com.sixmac.core.Constant;
+import com.sixmac.entity.EmCust;
 import com.sixmac.entity.Member;
 import com.sixmac.utils.WebUtil;
 import org.apache.commons.lang.StringUtils;
@@ -66,7 +67,7 @@ public class AdminFilter implements Filter {
             }
         }
 
-        Member member = (Member)httpRequest.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
+        EmCust member = (EmCust)httpRequest.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
         if(member!=null){
             chain.doFilter(request, response);
             return;
@@ -75,7 +76,7 @@ public class AdminFilter implements Filter {
         String xRequested = httpRequest.getHeader("X-Requested-With");
         if (xRequested != null && xRequested.indexOf("XMLHttpRequest") != -1) {
             httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            WebUtil.print(httpResponse, "ÖØÐÂµÇÂ¼£¡");
+            WebUtil.print(httpResponse, "ï¿½ï¿½ï¿½Âµï¿½Â¼ï¿½ï¿½");
         } else {
             httpResponse.sendRedirect(contextPath+"/admin/login");
         }

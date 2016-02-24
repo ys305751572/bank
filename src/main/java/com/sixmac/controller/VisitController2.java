@@ -1,9 +1,12 @@
 package com.sixmac.controller;
 
 import java.util.Date;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +20,7 @@ import com.sixmac.service.UploadImageService;
 import com.sixmac.service.VisitRecordService;
 
 @Controller
-@RequestMapping("/api/visit")
+@RequestMapping("/admin/visit")
 public class VisitController2 {
 
 	@Autowired
@@ -29,8 +32,15 @@ public class VisitController2 {
 	@Autowired
 	private EmCustService emCustService;
 	
-	@RequestMapping(value = "/recordPage")
-	public String recordPage() {
+	@Autowired
+	private VisitRecordService visitRecordService;
+	
+	@RequestMapping(value = "/page")
+	public String recordPage(String error,Model model) {
+		
+		if(StringUtils.isNotBlank(error)) {
+			model.addAttribute("error", error);
+		}
 		return "upload_img";
 	}
 	
@@ -44,22 +54,32 @@ public class VisitController2 {
 	 * @return
 	 */
 	@RequestMapping(value = "/record", method = RequestMethod.POST)
-	public String visitRecord(@RequestParam(value = "file1", required = false) MultipartFile file1,String wnumber, String custName, String custMobile) {
+	public String visitRecord(@RequestParam(value = "file1", required = false) MultipartFile file1,String wnumber, String custName, String custMobile,Model model) {
 
-		Image image = uploadImageService.uploadImage(file1);
-		
 		VisitRecord record = new VisitRecord();
 		EmCust cust2 = emCustService.findByCustNameAndWname(custName, wnumber);
+		List<VisitRecord> list = visitRecordService.findByWnumberAndCustName(wnumber, custName);
 		
+		if(list != null && list.size() > 0) {
+			model.addAttribute("error", "error1");
+			return "redirect:/admin/visit/page";
+		}
 		
-		record.setCustId(cust2.getCustomerId());
-		record.setCustMobile(custMobile);
-		record.setCustName(custName);
-		record.setWnumber(wnumber);
-		record.setImage(image != null ? image.getPath() : "");
-		record.setCreateDate(new Date());
-		record.setModifyDate(new Date());
-		service.create(record);
-		return "redirect:/doc/upload_img.jsp";
+		if(cust2 != null && cust2.getCustomerId() != null) {
+			Image image = uploadImageService.uploadImage(file1);
+			
+			record.setCustId(cust2.getCustomerId());
+			record.setCustMobile(custMobile);
+			record.setCustName(custName);
+			record.setWnumber(wnumber);
+			record.setImage(image != null ? image.getPath() : "");
+			record.setCreateDate(new Date());
+			record.setModifyDate(new Date());
+			service.create(record);
+		}
+		else {
+			model.addAttribute("error", "error2");
+		}
+		return "redirect:/admin/visit/page";
 	}
 }

@@ -1,14 +1,10 @@
 package com.sixmac.utils;
 
 import java.util.Comparator;
-
+import com.sixmac.entity.vo.EmCustVo;
 import net.sourceforge.pinyin4j.PinyinHelper;
 
-public class ComparatorPinYin implements Comparator<String> {
-	@Override
-	public int compare(String o1, String o2) {
-		return ToPinYinString(o1).compareTo(ToPinYinString(o2));
-	}
+public class ComparatorPinYin implements Comparator<EmCustVo> {
 
 	private String ToPinYinString(String str) {
 
@@ -24,5 +20,10 @@ public class ComparatorPinYin implements Comparator<String> {
 			}
 		}
 		return sb.toString();
+	}
+
+	@Override
+	public int compare(EmCustVo o1, EmCustVo o2) {
+		return ToPinYinString(o1.getCustomerName()).compareTo(ToPinYinString(o2.getCustomerName()));
 	}
 }

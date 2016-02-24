@@ -1,9 +1,14 @@
 package com.sixmac.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,16 +74,24 @@ public class VisitController extends CommonController {
 	 * @return
 	 */
 	@RequestMapping(value = "/bddetail")
-	public String bddetail(String custId,HttpServletRequest request,Model model) {
+	public String bddetail(String custId,String custName,Boolean isJoin,HttpServletRequest request,Model model) {
 		
-		EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_BUSINESS);
+		EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
 		
 		if(loginUser == null) { 
 			return "redirect:/admin/login";
 		}
 		List<EmCustVo> voList = emCustService.findCustByCustId(custId,loginUser.getWnumber());
+		if(voList != null && voList.size() > 0) {
+			custName = voList.get(0).getCustomerName();
+		}
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("custName", custName);
+		map.put("isJoin", isJoin);
 		model.addAttribute("list", voList);
-		return "";
+		model.addAttribute("map", map);
+		return "policy_detail";
 	}
 
 	/**
@@ -100,22 +113,36 @@ public class VisitController extends CommonController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "customerDetail")
-	public String customerDetail(HttpServletRequest request,Model model) {
+	@RequestMapping(value = "/customerDetail")
+	public String customerDetail(HttpServletRequest request,Model model,String property,String sort) {
 		
-		EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_BUSINESS);
+		EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
 		
 		String wnumber = "";
 		if(loginUser != null) {
 			wnumber = loginUser.getWnumber();
-			List<EmCustVo> list = emCustService.findCustomerByWnumber(wnumber);
-			
-			
+			List<EmCustVo> list = emCustService.findCustomerByWnumber(wnumber,property,sort);
 			model.addAttribute("list", list);
-			return "";
+			
+			Map<String,String> map = new HashMap<String,String>();
+			if("be".equals(property)) {
+				map.put("sortBe", StringUtils.isBlank(sort) && !"asc".equals(sort) ? "acs":"desc");
+				map.put("sortName", "asc");
+			}
+			else {
+				map.put("sortName", StringUtils.isBlank(sort) && !"asc".equals(sort) ? "acs":"desc");
+				map.put("sortBe","acs");
+			}
+			model.addAttribute("map", map);
+			return "customer_detail";
 		}
 		else {
 			return "redirect:/admin/login";
 		}
+	}
+	
+	@RequestMapping(value = "toUnfinishedPage")
+	public String toUnfinishedPage() {
+		return "loading";
 	}
 }

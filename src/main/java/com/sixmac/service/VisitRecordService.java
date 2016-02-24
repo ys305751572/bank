@@ -10,4 +10,6 @@ public interface VisitRecordService extends ICommonService<VisitRecord> {
 	public Long countToday();
 	
 	public List<VisitRecord> findByWnumber(String wnumber);
+	
+	public List<VisitRecord> findByWnumberAndCustName(String wnumber,String custName);
 }

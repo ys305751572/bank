@@ -73,4 +73,9 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 	public List<VisitRecord> findByWnumber(String wnumber) {
 		return dao.findByWnumber(wnumber);
 	}
+
+	@Override
+	public List<VisitRecord> findByWnumberAndCustName(String wnumber, String custName) {
+		return dao.findByWnumberAndCustName(wnumber, custName);
+	}
 }

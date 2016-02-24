@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -78,23 +79,32 @@ public class EmCustServiceImpl implements EmCustService{
 	@Override
 	public EmCust findByUsernameAndPassword(String username, String password) {
 //		return dao.findByUsernameAndPassword(username, password);
-		return null;
+		EntityManager em = factory.createEntityManager();
+		String sql = "select a.* from tb_em_cust a where a.wnumber = '"+ username + "' and a.mobile = '"+ password +"' limit 1";
+		Query query = em.createNativeQuery(sql, EmCust.class);
+		List list = query.getResultList();
+		
+		EmCust cust = null;
+		if(list != null && list.size() > 0) {
+			cust = (EmCust) query.getSingleResult();
+		}
+		return cust;
 	}
 
 	@Override
 	@Transactional
-	public List<EmCustVo> findCustomerByWnumber(String wnumber) {
+	public List<EmCustVo> findCustomerByWnumber(String wnumber,String property,String sort) {
 		List<EmCust> list = dao.findCustomerByWnumber(wnumber);
 		List<EmCustVo> voList = countAllBf(list);
 		
 		analysisIsJoin(voList,wnumber);
-		sort(voList,"","");
+		sort(voList,property,sort);
 		return voList;
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void sort(List voList, String property, String sort) {
-		if("be".equals(property)) {
+		if(StringUtils.isBlank(property) || "be".equals(property)) {
 			Collections.sort(voList, new ComparatorBe());
 		}
 		else {
@@ -130,7 +140,8 @@ public class EmCustServiceImpl implements EmCustService{
 				}
 				EmCustVo vo = new EmCustVo();
 				vo.setWnumber(emCust.getWnumber());
-				vo.setName(emCust.getName());
+				vo.setCustomerId(emCust.getCustomerId());
+				vo.setCustomerName(emCust.getCustomerName());
 				vo.setAllBf(allBf);
 				voList.add(vo);
 			}
@@ -139,6 +150,7 @@ public class EmCustServiceImpl implements EmCustService{
 	}
 	
 	public boolean isContains(List<EmCustVo> voList,String custId) {
+		
 		for (EmCustVo emCustVo : voList) {
 			if(emCustVo.getCustomerId().equals(custId)) {
 				return true;
@@ -151,7 +163,7 @@ public class EmCustServiceImpl implements EmCustService{
 	public CustomDataVo generateCustomDataVo() {
 		
 		Long countCustom = dao.countCustom();
-		Double countMoney = dao.countMoney();
+		Long countMoney = dao.countMoney();
 		Long todayRecord = visitRecordService.countToday();
 		CustomDataVo vo = new CustomDataVo();
 		vo.setAllCustomCount(countCustom);
@@ -170,8 +182,10 @@ public class EmCustServiceImpl implements EmCustService{
 		for (EmCust emCust : custList) {
 			vo = new EmCustVo();
 			vo.setBeInsuranceName(emCust.getBeInsuranceName());
+			vo.setCustomerName(emCust.getCustomerName());
 			vo.setLimit(emCust.getLimit());
 			vo.setBe(emCust.getBe());
+			vo.setLimit(emCust.getLimit());
 			voList.add(vo);
 		}
 		return voList;
@@ -183,7 +197,14 @@ public class EmCustServiceImpl implements EmCustService{
 		
 		String sql = "select a.* from tb_em_cust a where a.customer_name = '"+ custName +"' and wnumber = '"+ wname +"' limit 1";
 		Query query = em.createNativeQuery(sql, EmCust.class);
-		EmCust cust = (EmCust) query.getSingleResult();
+		List list = query.getResultList();
+		EmCust cust = null;
+		if(list != null && list.size() > 0 ) {
+			cust = (EmCust) query.getSingleResult();
+		}
+		else {
+			cust = new EmCust();
+		}
 		return cust;
 	}
 }

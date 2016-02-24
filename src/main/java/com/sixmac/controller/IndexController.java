@@ -5,6 +5,8 @@ import com.sixmac.controller.common.CommonController;
 import com.sixmac.core.Constant;
 import com.sixmac.core.bean.Result;
 import com.sixmac.entity.Member;
+import com.sixmac.entity.vo.CustomDataVo;
+import com.sixmac.service.EmCustService;
 import com.sixmac.service.LoginService;
 import com.sixmac.service.MemberService;
 import com.sixmac.utils.CookiesUtils;
@@ -32,6 +34,9 @@ public class IndexController extends CommonController {
     private LoginService loginService;
     @Autowired
     private MemberService memberService;
+    
+    @Autowired
+    private EmCustService emCustService;
 
     @RequestMapping(value = "/login")
     public String login(HttpServletRequest request,
@@ -47,7 +52,7 @@ public class IndexController extends CommonController {
             String username = (String) params.get("username");
             model.put("username",username);
         }
-        return "登录";
+        return "login";
     }
 
     @RequestMapping(value = "/login/check")
@@ -57,7 +62,7 @@ public class IndexController extends CommonController {
                              String remark,
                              ModelMap model) {
 
-        Boolean success = loginService.login(request, username, Md5Util.md5(password), Constant.MEMBER_TYPE_GLOBLE, remark);
+        Boolean success = loginService.login(request, username, password, remark);
         if (success) {
             // 登录成功后，将用户名放入cookies
             int loginMaxAge = 30 * 24 * 60 * 60; // 定义cookies的生命周期，这里是一个月。单位为秒
@@ -78,7 +83,6 @@ public class IndexController extends CommonController {
 
     @RequestMapping(value = "/")
     public String index(){
-
         return "redirect:/admin/dashboard";
     }
 
@@ -87,8 +91,9 @@ public class IndexController extends CommonController {
     public String dashboard(HttpServletRequest request,
                             HttpServletResponse response,
                             ModelMap model) {
-
-        return "控制面板";
+    	CustomDataVo vo = emCustService.generateCustomDataVo();
+    	model.addAttribute("vo", vo);
+        return "health_walk";
     }
 
 

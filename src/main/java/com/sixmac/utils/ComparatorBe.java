@@ -2,11 +2,14 @@ package com.sixmac.utils;
 
 import java.util.Comparator;
 
-public class ComparatorBe implements Comparator<Double>{
+import com.sixmac.entity.vo.EmCustVo;
+
+public class ComparatorBe implements Comparator<EmCustVo>{
 
 	@Override
-	public int compare(Double o1, Double o2) {
-		if( o1 < o2 ) {
+	public int compare(EmCustVo o1, EmCustVo o2) {
+		
+		if( o1.getAllBf() < o2.getAllBf() ) {
 			return -1;
 		}
 		else {

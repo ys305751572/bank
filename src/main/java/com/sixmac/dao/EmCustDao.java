@@ -17,7 +17,7 @@ public interface EmCustDao extends JpaRepository<EmCust, Integer>{
 	public Long countCustom();
 	
 	@Query("select sum(a.bf) from EmCust a")
-	public Double countMoney();
+	public Long countMoney();
 	
 	@Query("select a from EmCust a where a.customerId = ?1 and a.wnumber = ?2")
 	public List<EmCust> findByCustId(String custId,String wnumber);

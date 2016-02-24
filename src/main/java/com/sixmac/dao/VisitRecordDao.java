@@ -14,4 +14,7 @@ public interface VisitRecordDao extends JpaRepository<VisitRecord, Integer> {
 	
 	@Query("select a from VisitRecord a where a.wnumber = ?1")
 	public List<VisitRecord> findByWnumber(String wnumber);
+	
+	@Query("select a from VisitRecord a where a.wnumber = ?1 and a.custName = ?2")
+	public List<VisitRecord> findByWnumberAndCustName(String wnumber, String custName);
 }
