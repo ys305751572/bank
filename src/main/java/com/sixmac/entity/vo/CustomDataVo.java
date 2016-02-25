@@ -11,7 +11,7 @@ public class CustomDataVo {
 	
 	private Long allMoney;
 	
-	private Long proviceCustomCount;
+	private Integer proviceCustomCount;
 	
 	private Long todayCount;
 
@@ -30,11 +30,11 @@ public class CustomDataVo {
 		this.allMoney = allMoney;
 	}
 
-	public Long getProviceCustomCount() {
+	public Integer getProviceCustomCount() {
 		return proviceCustomCount;
 	}
 
-	public void setProviceCustomCount(Long proviceCustomCount) {
+	public void setProviceCustomCount(Integer proviceCustomCount) {
 		this.proviceCustomCount = proviceCustomCount;
 	}
 

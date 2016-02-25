@@ -1,5 +1,6 @@
 package com.sixmac.service.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -132,10 +133,10 @@ public class EmCustServiceImpl implements EmCustService{
 		for (EmCust emCust : list) {
 			String custId = emCust.getCustomerId();
 			if(!isContains(voList, custId)) {
-				double allBf = 0.0;
+				long allBf = 0;
 				for (EmCust emCust2 : list) {
 					if(custId.equals(emCust2.getCustomerId())) {
-						allBf += emCust2.getBf();
+						allBf += emCust2.getBe();
 					}
 				}
 				EmCustVo vo = new EmCustVo();
@@ -160,17 +161,29 @@ public class EmCustServiceImpl implements EmCustService{
 	}
 	
 	@Override
-	public CustomDataVo generateCustomDataVo() {
+	public CustomDataVo generateCustomDataVo(String wnumber) {
 		
-		Long countCustom = dao.countCustom();
-		Long countMoney = dao.countMoney();
+		Long countCustom = countCustom(wnumber);
+		Long countMoney = dao.countMoney(wnumber);
 		Long todayRecord = visitRecordService.countToday();
+		Integer allRecord = visitRecordService.countVisitByWnumber(wnumber);
 		CustomDataVo vo = new CustomDataVo();
 		vo.setAllCustomCount(countCustom);
 		vo.setAllMoney(countMoney);
-		vo.setProviceCustomCount(countCustom);
+		vo.setProviceCustomCount(allRecord);
 		vo.setTodayCount(todayRecord);
 		return vo;
+	}
+
+	private Long countCustom(String wnumber) {
+		
+		EntityManager em = factory.createEntityManager();
+		String sql = "select COUNT(DISTINCT(a.customer_id)) from tb_em_cust a where a.wnumber = " +  wnumber;
+		
+		Query query = em.createNativeQuery(sql);
+		BigInteger obj = (BigInteger) query.getSingleResult();
+		Long count = obj != null ? obj.longValue() : 0;
+		return count;
 	}
 
 	@Override
@@ -184,8 +197,9 @@ public class EmCustServiceImpl implements EmCustService{
 			vo.setBeInsuranceName(emCust.getBeInsuranceName());
 			vo.setCustomerName(emCust.getCustomerName());
 			vo.setLimit(emCust.getLimit());
-			vo.setBe(emCust.getBe());
+			vo.setBe(emCust.getBe().longValue());
 			vo.setLimit(emCust.getLimit());
+			vo.setYear(emCust.getYear());
 			voList.add(vo);
 		}
 		return voList;

@@ -4,6 +4,7 @@ import com.sixmac.common.exception.GeneralExceptionHandler;
 import com.sixmac.controller.common.CommonController;
 import com.sixmac.core.Constant;
 import com.sixmac.core.bean.Result;
+import com.sixmac.entity.EmCust;
 import com.sixmac.entity.Member;
 import com.sixmac.entity.vo.CustomDataVo;
 import com.sixmac.service.EmCustService;
@@ -91,7 +92,9 @@ public class IndexController extends CommonController {
     public String dashboard(HttpServletRequest request,
                             HttpServletResponse response,
                             ModelMap model) {
-    	CustomDataVo vo = emCustService.generateCustomDataVo();
+    	EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
+    	
+    	CustomDataVo vo = emCustService.generateCustomDataVo(loginUser.getWnumber());
     	model.addAttribute("vo", vo);
         return "health_walk";
     }

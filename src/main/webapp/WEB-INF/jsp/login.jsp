@@ -7,7 +7,7 @@
 <%@ include file="inc/meta.jsp"%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-<title>无标题文档</title>
+<title>登录</title>
 <link rel="stylesheet" type="text/css" href="static/html/css/libs/CSSRESET.css">
 <link rel="stylesheet" type="text/css" href="static/html/css/common.css">
 <link rel="stylesheet" type="text/css" href="static/html/css/login.css">

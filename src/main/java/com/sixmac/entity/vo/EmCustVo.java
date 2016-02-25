@@ -18,13 +18,13 @@ public class EmCustVo {
 	
 	private Double bf; // 保费
 	
-	private Double be; // 保额
+	private Long be; // 保额
 	
 	private Integer limit; // 期限
 	
 	private Integer year; // 年份
 
-	private Double allBf; // 保费
+	private Long allBf; // 保费
 	
 	private Boolean isJoin = false; // 是否参加
 
@@ -35,12 +35,11 @@ public class EmCustVo {
 	public void setIsJoin(Boolean isJoin) {
 		this.isJoin = isJoin;
 	}
-
-	public Double getAllBf() {
+	public Long getAllBf() {
 		return allBf;
 	}
 
-	public void setAllBf(Double allBf) {
+	public void setAllBf(Long allBf) {
 		this.allBf = allBf;
 	}
 
@@ -107,12 +106,11 @@ public class EmCustVo {
 	public void setBf(Double bf) {
 		this.bf = bf;
 	}
-
-	public Double getBe() {
+	public Long getBe() {
 		return be;
 	}
 
-	public void setBe(Double be) {
+	public void setBe(Long be) {
 		this.be = be;
 	}
 

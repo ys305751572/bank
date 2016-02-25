@@ -7,7 +7,7 @@
 <%@ include file="inc/meta.jsp"%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />   
-<title>无标题文档</title>
+<title>太平健康季 让爱无缺口</title>
 <link rel="stylesheet" type="text/css" href="static/html/css/libs/CSSRESET.css">
 <link rel="stylesheet" type="text/css" href="static/html/css/common.css">
 <link rel="stylesheet" type="text/css" href="static/html/css/health_walk.css">
@@ -23,10 +23,10 @@
 			<div class="main">	
             	<div class="div_location"></div>
 				<ul class="ul_list">
-                	<li><span></span><p>至今共有<em>${vo.allCustomCount}</em>位客户</p></li>
-                    <li><span></span><p>送去了<em>${vo.allMoney }</em>的保险为他们生活增添了祥和与安宁</p></li>
+                	<li><span></span><p>至今共为<em>${vo.allCustomCount}</em>位客户</p></li>
+                    <li><span></span><p>送去了<em>${vo.allMoney }</em>的保险保障</br>为他们生活增添了祥和与安宁</p></li>
                     <li><span></span><p>全省累计回访<em>${vo.proviceCustomCount }</em>位客户</p></li>
-                    <li><span></span><p>至今回访<em>${vo.todayCount }</em>位客户</p></li>
+                    <li><span></span><p>今日回访<em>${vo.todayCount }</em>位客户</p></li>
                 </ul>
 			</div>
 		</article>

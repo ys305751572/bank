@@ -109,4 +109,9 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 			}
 		}, new PageRequest(pageNum, pageSize, Sort.Direction.DESC, "id"));
 	}
+
+	@Override
+	public Integer countVisitByWnumber(String wnumber) {
+		return dao.countVisitByWnumber(wnumber);
+	}
 }

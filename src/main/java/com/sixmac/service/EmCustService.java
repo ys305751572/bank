@@ -13,7 +13,7 @@ public interface EmCustService extends ICommonService<EmCust>{
 	
 	public List<EmCustVo> findCustomerByWnumber(String wnumber,String property,String sort);
 	
-	public CustomDataVo generateCustomDataVo();
+	public CustomDataVo generateCustomDataVo(String wnumber);
 	
 	public List<EmCustVo> findCustByCustId(String custId,String wnumber);
 	

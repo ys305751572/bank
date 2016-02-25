@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-<title>无标题文档</title>
+<title>客户明细</title>
 <link rel="stylesheet" type="text/css"
 	href="static/html/css/libs/CSSRESET.css">
 <link rel="stylesheet" type="text/css" href="static/html/css/common.css">
@@ -19,6 +19,7 @@
 	<div class="_container clear">
 		<header class="header">
 			<h1>客户明细</h1>
+			<a href="javascript:void(0)" onclick="goBack();">返回</a>
 		</header>
 		<!-- header End -->
 
@@ -82,6 +83,10 @@
 		
 		function toCustomPage() {
 			window.location.href = "visit/customerDetail";
+		}
+		
+		function goBack() {
+			window.location.href = "admin/dashboard";
 		}
 	</script>
 

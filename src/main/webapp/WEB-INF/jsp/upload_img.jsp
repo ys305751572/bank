@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-<title>无标题文档</title>
+<title>太平健康季 让爱无缺口</title>
 <link rel="stylesheet" type="text/css" href="../../static/html/css/libs/CSSRESET.css">
 <link rel="stylesheet" type="text/css" href="../../static/html/css/common.css">
 <link rel="stylesheet" type="text/css" href="../../static/html/css/upload_img.css">
@@ -39,7 +39,6 @@
 		
 		$formBtn = $("#doBtn");
 		$formBtn.on("click",function() {
-			$formBtn.attr('disabled',true);
 			var image = $("#file1").val();
 			var wnumber = $("#wnumber").val();
 			var custName = $("#custName").val();
@@ -51,11 +50,19 @@
 					$error.append("请上传图片");
 					return;
 				}
-			 
 			if(wnumber == null || wnumber.trim() == '') {
 				$error.append("请输入见证人工号");
 				return;
 			}
+			if(wnumber.length < 8 || wnumber.length > 11) {
+				$error.append("工号为8-11位数字");
+				return;
+			}
+			if(!/^[0-9]*$/.test(wnumber)) {
+				$error.append("工号为8-11位数字");
+				return;
+			}
+			
 			if(custName == null || custName.trim() == '') {
 				$error.append("请输入本人姓名");
 				return;
@@ -64,6 +71,15 @@
 				$error.append("请输入本人电话");
 				return;
 			}
+			if(custMobile.length != 11) {
+				$error.append("电话为11位数字");
+				return;
+			}
+			if(!/^[0-9]*$/.test(wnumber)) {
+				$error.append("电话为11位数字");
+				return;
+			}
+			
 			$("form").submit();
 		})
 	})

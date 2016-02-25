@@ -77,7 +77,7 @@ public class ImportExcel {
 					} else if(j == 6) {
 						entity.setBf(Double.parseDouble(cellStr));
 					} else if(j == 7) {
-						entity.setBe(Double.parseDouble(cellStr));
+//						entity.setBe(Double.parseDouble(cellStr));
 					} else if(j == 8) {
 						double m = Double.parseDouble(cellStr);
 						entity.setYear((int)m);

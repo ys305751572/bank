@@ -150,11 +150,10 @@
                     },
                     "columns": [
                         {"data": "id"},
-                        {"data": "name"},
-                        {"data": "code"},
-                        {"data": "price"},
-                        {"data": "productType.name"},
-                        {"data": "productArea.name"},
+                        {"data": "wnumber"},
+                        {"data": "wname"},
+                        {"data": "custName"},
+                        {"data": "custMobile"},
                         {"data": "createDate"},
                         {"data": ""}
                     ],
@@ -195,7 +194,6 @@
                         })
 
                         $('td', row).last().find(".edit").attr("href", 'admin/product/add?id=' + data.id)
-
                         $('td', row).last().find(".delete").click(function () {
                             var checkbox = $('td', row).first().find("input[type='checkbox']");
                             productList.fn.deleteRow(checkbox, [data.id]);

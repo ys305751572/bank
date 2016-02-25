@@ -102,8 +102,8 @@ public class VisitController extends CommonController {
 	@RequestMapping(value = "/recordDetail")
 	public String visitRecordDetail(Model model) {
 		
-		CustomDataVo vo = emCustService.generateCustomDataVo();
-		model.addAttribute("vo", vo);
+//		CustomDataVo vo = emCustService.generateCustomDataVo();
+//		model.addAttribute("vo", vo);
 		return "";
 	}
 
