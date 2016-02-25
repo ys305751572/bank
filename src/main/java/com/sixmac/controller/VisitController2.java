@@ -72,6 +72,7 @@ public class VisitController2 {
 			record.setCustMobile(custMobile);
 			record.setCustName(custName);
 			record.setWnumber(wnumber);
+			record.setWname(cust2.getName());
 			record.setImage(image != null ? image.getPath() : "");
 			record.setCreateDate(new Date());
 			record.setModifyDate(new Date());

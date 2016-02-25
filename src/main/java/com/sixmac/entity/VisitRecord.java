@@ -25,6 +25,9 @@ public class VisitRecord {
 	@Column(name = "wnumber")
 	private String wnumber; // 工号
 	
+	@Column(name = "wname")
+	private String wname; // 员工姓名
+	
 	@Column(name = "customer_id")
 	private String custId;
 	
@@ -42,6 +45,14 @@ public class VisitRecord {
 	@Column(name = "modify_date")
 	private Date modifyDate;
 	
+	public String getWname() {
+		return wname;
+	}
+
+	public void setWname(String wname) {
+		this.wname = wname;
+	}
+
 	public String getCustId() {
 		return custId;
 	}
