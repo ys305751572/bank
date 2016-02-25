@@ -35,7 +35,7 @@
 	                    	<div></div>
 	                        <div>
 	                        	<p><span>被保人：<em>${cust.beInsuranceName }</em></span><span>缴费年限：<em>${cust.limit }年</em></span></p>
-	                            <p><span>保 &nbsp; 额：<em>${cust.be }</em></span><span>${cust.year }</span></p>
+	                            <p><span>保 &nbsp; 额：<em>${cust.be }</em></span><span>购买年份：<em>${cust.year }</em></span></p>
 	                        </div>
 	                    </li>
                 	</c:forEach>

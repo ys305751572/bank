@@ -97,17 +97,22 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 			public Predicate toPredicate(Root<VisitRecord> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				List<Predicate> list = new ArrayList<Predicate>();
 				if(StringUtils.isNotBlank(wnumber)) {
-					list.add(cb.like(root.get("wnumber").as(String.class), wnumber));
+					list.add(cb.like(root.get("wnumber").as(String.class),"%" + wnumber + "%"));
 				}
 				if(StringUtils.isNotBlank(wname)) {
-					list.add(cb.like(root.get("wname").as(String.class), wname));
+					list.add(cb.like(root.get("wname").as(String.class), "%" + wname + "%"));
 				} 
 				if(StringUtils.isNotBlank(custname)) {
-					list.add(cb.like(root.get("custName").as(String.class), custname));
+					list.add(cb.like(root.get("custName").as(String.class), "%" + custname + "%"));
 				}
-				return cb.and(list.toArray(new Predicate[]{}));
+				
+				Predicate result = cb.and(list.toArray(new Predicate[]{}));
+				 if (result != null) {
+	                 query.where(result);
+                }
+                return query.getRestriction();
 			}
-		}, new PageRequest(pageNum, pageSize, Sort.Direction.DESC, "id"));
+		}, new PageRequest(pageNum - 1, pageSize, Sort.Direction.DESC, "id"));
 	}
 
 	@Override

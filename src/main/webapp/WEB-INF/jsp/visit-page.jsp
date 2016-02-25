@@ -13,18 +13,16 @@
     <%@ include file="inc/meta.jsp" %>
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>商品列表</title>
+    <title>回访客户列表</title>
     <%@ include file="inc/css.jsp" %>
 </head>
 
 <body>
 <div id="posts" class="wrapper">
-    <%@ include file="inc/nav.jsp" %>
-
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">商品列表</h1>
+                <h1 class="page-header">回访客户列表</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -33,28 +31,28 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <a href="admin/product/add" target="_blank" class="btn btn-outline btn-primary btn-lg"
-                           role="button">添加商品</a>
-
                         <form class="navbar-form navbar-right" role="search">
                             <div class="form-group">
-                                <label>商品编号：</label>
-                                <input type="text" class="form-control" value="" id="productCode" name="productCode"
+                                <label>工号：</label>
+                                <input type="text" class="form-control" value="" id="wnumber" name="prodwnumbeructCode"
                                        maxlength="20"
-                                       placeholder="请输入商品编号">
+                                       placeholder="请输入工号">
                             </div>
                             <div class="form-group">
-                                <label>类型：</label>
-                                <select id="typeList" name="typeList" style="width: 120px;"
-                                        class="form-control"></select>
+                                <label>员工姓名：</label>
+                                <input type="text" class="form-control" value="" id="wname" name="wname"
+                                       maxlength="20"
+                                       placeholder="请输入员工姓名">
                             </div>
-                            <div class="form-group">
-                                <label>产区：</label>
-                                <select id="areaList" name="areaList" style="width: 120px;"
-                                        class="form-control"></select>
+                             <div class="form-group">
+                                <label>客户姓名：</label>
+                                <input type="text" class="form-control" value="" id="custname" name="custname"
+                                       maxlength="20" 
+                                       placeholder="请输入客户姓名">
                             </div>
                             <button type="button" id="c_search" class="btn btn-default btn-sm">查询</button>
                         </form>
+                        <div class="clearfix"></div>
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -76,13 +74,12 @@
                                 <tr>
                                     <th><input type="checkbox" onclick="$bluemobi.checkAll(this)" class="checkall"/>
                                     </th>
-                                    <th>商品名称</th>
-                                    <th>商品编号</th>
-                                    <th>优惠价</th>
-                                    <th>类型</th>
-                                    <th>产区</th>
+                                    <th>工号</th>
+                                    <th>员工姓名</th> 
+                                    <th>客户姓名</th>
+                                    <th>客户手机</th>
                                     <th>创建时间</th>
-                                    <th>操作</th>
+                                    <th>查看图片</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -160,17 +157,11 @@
                     "columnDefs": [
                         {
                             "data": null,
-                            "defaultContent": "<button type='button'  title='上架商品' class='btn btn-circle settingAdded'>" +
-                            "<i class='fa fa-recycle'></i>" +
-                            "</button>" +
-                            "&nbsp;&nbsp;" +
+                            "defaultContent":
                             "<a  title='编辑' target='_blank' class='btn btn-primary btn-circle edit'>" +
                             "<i class='fa fa-edit'></i>" +
                             "</a>" +
-                            "&nbsp;&nbsp;" +
-                            "<button type='button'  title='删除' class='btn btn-danger btn-circle delete'>" +
-                            "<i class='fa fa-bitbucket'></i>" +
-                            "</button>",
+                            "&nbsp;&nbsp;" ,
                             "targets": -1
                         }
                     ],
@@ -193,18 +184,14 @@
                             productList.fn.settingAdded(data);
                         })
 
-                        $('td', row).last().find(".edit").attr("href", 'admin/product/add?id=' + data.id)
-                        $('td', row).last().find(".delete").click(function () {
-                            var checkbox = $('td', row).first().find("input[type='checkbox']");
-                            productList.fn.deleteRow(checkbox, [data.id]);
+                        $('td', row).last().find(".edit").on("click",function(){
+                        	window.open(data.image);
                         })
                     },
                     "fnServerParams": function (aoData) {
-                        aoData.typeId = $("#typeId").val();
-                        aoData.isAdded = $("#isAdded").val();
-                        aoData.productCode = $("#productCode").val();
-                        aoData.typeId = $("#typeList").val();
-                        aoData.areaId = $("#areaList").val();
+                        aoData.wnumber = $("#wnumber").val();
+                        aoData.wname = $("#wname").val();
+                        aoData.custname = $("#custname").val();
                     },
                     "fnDrawCallback": function (row) {
                         $bluemobi.uiform();

@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.sixmac.core.Configue;
+
 @Entity
 @Table(name="tb_em_visit_record")
 public class VisitRecord {
@@ -110,7 +112,7 @@ public class VisitRecord {
 	}
 
 	public String getImage() {
-		return image;
+		return image ;
 	}
 
 	public void setImage(String image) {

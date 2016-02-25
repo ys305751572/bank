@@ -45,7 +45,7 @@
         <filter-class>com.sixmac.filter.AdminFilter</filter-class>
         <init-param>
             <param-name>skipUrls</param-name>
-            <param-value>/admin/login/*,/admin/login,/admin/test/*,/admin/visit/*</param-value>
+            <param-value>/admin/login/*,/admin/login,/admin/test/*,/admin/visit/*,/admin/visitpage/*</param-value>
         </init-param>
     </filter>
     <filter-mapping>
