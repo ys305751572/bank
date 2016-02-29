@@ -105,7 +105,7 @@
 								<h5>已访问过该客户</h5>
 							</c:if>
 							<c:if test="${! empty error and error eq 'error2'}">
-								<h5>客户不存在</h5>
+								<h5>上传成功</h5>
 							</c:if>
 							<h5 id="error"></h5>
 							<div>

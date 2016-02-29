@@ -9,7 +9,7 @@ public class CustomDataVo {
 
 	private Long allCustomCount;
 	
-	private Long allMoney;
+	private Double allMoney;
 	
 	private Integer proviceCustomCount;
 	
@@ -22,11 +22,12 @@ public class CustomDataVo {
 	public void setAllCustomCount(Long allCustomCount) {
 		this.allCustomCount = allCustomCount;
 	}
-	public Long getAllMoney() {
+
+	public Double getAllMoney() {
 		return allMoney;
 	}
 
-	public void setAllMoney(Long allMoney) {
+	public void setAllMoney(Double allMoney) {
 		this.allMoney = allMoney;
 	}
 

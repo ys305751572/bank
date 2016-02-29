@@ -29,8 +29,7 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 	
 	@Override
 	public List<VisitRecord> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.findAll();
 	}
 
 	@Override
@@ -76,8 +75,8 @@ public class VisitRecordServiceImpl implements VisitRecordService{
 	}
 
 	@Override
-	public Long countToday() {
-		return dao.countRecordToday(new Date());
+	public Long countToday(String wnumber) {
+		return dao.countRecordToday(new Date(),wnumber);
 	}
 
 	@Override

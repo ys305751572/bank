@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,6 +97,10 @@ public class IndexController extends CommonController {
     	EmCust loginUser = (EmCust) request.getSession().getAttribute(Constant.SESSION_MEMBER_GLOBLE);
     	
     	CustomDataVo vo = emCustService.generateCustomDataVo(loginUser.getWnumber());
+    	Double money = vo.getAllMoney();
+    	if(money != null) {
+    		vo.setAllMoney(Double.valueOf(new DecimalFormat("#.00").format(money/10000)));
+    	}
     	model.addAttribute("vo", vo);
         return "health_walk";
     }

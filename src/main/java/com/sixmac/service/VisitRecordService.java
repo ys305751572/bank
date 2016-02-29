@@ -7,7 +7,7 @@ import com.sixmac.service.common.ICommonService;
 
 public interface VisitRecordService extends ICommonService<VisitRecord> {
 
-	public Long countToday();
+	public Long countToday(String wnumber);
 	
 	public List<VisitRecord> findByWnumber(String wnumber);
 	

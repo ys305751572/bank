@@ -35,6 +35,7 @@ DROP TABLE IF EXISTS `tb_em_visit_record`;
 create table `tb_em_visit_record` (
 	`id` int(32) not null auto_increment,
 	`wnumber` varchar(50) not null comment '员工工号',
+	`wname` varchar(50) comment '员工姓名',
 	`customer_id` varchar(50) comment '客户ID',
 	`customer_name` varchar(50) comment '客户姓名',
 	`mobile` varchar(50) not null comment '本人电话',

@@ -89,6 +89,7 @@ public class EmCustServiceImpl implements EmCustService{
 		if(list != null && list.size() > 0) {
 			cust = (EmCust) query.getSingleResult();
 		}
+		em.close();
 		return cust;
 	}
 
@@ -165,11 +166,11 @@ public class EmCustServiceImpl implements EmCustService{
 		
 		Long countCustom = countCustom(wnumber);
 		Long countMoney = dao.countMoney(wnumber);
-		Long todayRecord = visitRecordService.countToday();
+		Long todayRecord = visitRecordService.countToday(wnumber);
 		Integer allRecord = visitRecordService.countVisitByWnumber(wnumber);
 		CustomDataVo vo = new CustomDataVo();
 		vo.setAllCustomCount(countCustom);
-		vo.setAllMoney(countMoney);
+		vo.setAllMoney(countMoney.doubleValue());
 		vo.setProviceCustomCount(allRecord);
 		vo.setTodayCount(todayRecord);
 		return vo;
@@ -219,6 +220,7 @@ public class EmCustServiceImpl implements EmCustService{
 		else {
 			cust = new EmCust();
 		}
+		em.close();
 		return cust;
 	}
 }

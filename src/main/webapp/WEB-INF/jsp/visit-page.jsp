@@ -31,6 +31,8 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                    	<a href="admin/visitpage/downloadTaskExcel" target="_blank" class="btn btn-outline btn-primary btn-lg"
+                           role="button">导出</a>
                         <form class="navbar-form navbar-right" role="search">
                             <div class="form-group">
                                 <label>工号：</label>

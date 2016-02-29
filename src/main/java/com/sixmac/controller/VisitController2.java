@@ -65,22 +65,18 @@ public class VisitController2 {
 			return "redirect:/admin/visit/page";
 		}
 		
-		if(cust2 != null && cust2.getCustomerId() != null) {
-			Image image = uploadImageService.uploadImage(file1);
-			
-			record.setCustId(cust2.getCustomerId());
-			record.setCustMobile(custMobile);
-			record.setCustName(custName);
-			record.setWnumber(wnumber);
-			record.setWname(cust2.getName());
-			record.setImage(image != null ? image.getPath() : "");
-			record.setCreateDate(new Date());
-			record.setModifyDate(new Date());
-			service.create(record);
-		}
-		else {
-			model.addAttribute("error", "error2");
-		}
+		Image image = uploadImageService.uploadImage(file1);
+		
+		record.setCustId(cust2.getCustomerId());
+		record.setCustMobile(custMobile);
+		record.setCustName(custName);
+		record.setWnumber(wnumber);
+		record.setWname(cust2.getName());
+		record.setImage(image != null ? image.getPath() : "");
+		record.setCreateDate(new Date());
+		record.setModifyDate(new Date());
+		service.create(record);
+		model.addAttribute("error", "error2");
 		return "redirect:/admin/visit/page";
 	}
 }
